@@ -35,4 +35,17 @@ export class CategoryComponent implements OnInit {
       return 'list-group-item';
     }
   }
+
+  getAllCategoryClass() {
+    if (this.currentCategory.categoryId == 0) {
+      return 'list-group-item list-group-item-action active';
+    } else {
+      return 'list-group-item list-group-item-action';
+    }
+  }
+
+  clearCurrentCategory() {
+    this.currentCategory = { categoryId: 0, categoryName: '' };
+    console.log('Çalışltı ID: ' + this.currentCategory.categoryId);
+  }
 }
