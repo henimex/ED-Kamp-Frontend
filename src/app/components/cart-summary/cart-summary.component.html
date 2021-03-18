@@ -1,10 +1,19 @@
-<li *ngIf="cartItems" class="nav-item dropdown">
-    <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-      Sepetiniz
-    </a>
-    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-      <li *ngFor="let cartItem of cartItems" ><a class="dropdown-item" >{{cartItem.product.productName}}</a></li>
-      <li><hr class="dropdown-divider"></li>
-      <li><a class="dropdown-item" >Sepete Git</a></li>
-    </ul>
-  </li>
+<li *ngIf="cartItems.length > 0" class="nav-item dropdown">
+  <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Sepetiniz
+  </a>
+  <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+    <li *ngFor="let cartItem of cartItems">
+      <a class="dropdown-item"><span class="badge bg-primary">{{ cartItem.quantity }} </span>
+        {{ cartItem.product.productName }}
+        <span class="badge bg-danger" (click)="removeFromCart(cartItem.product)"> Sil </span></a>
+    </li>
+    <li>
+      <hr class="dropdown-divider" />
+    </li>
+    <li>
+      <img src="https://i.pinimg.com/564x/d5/eb/a5/d5eba595ec93552e08be0e19844824ad.jpg" alt="" />
+    </li>
+    <li><a class="dropdown-item">Sepete Git</a></li>
+  </ul>
+</li>
