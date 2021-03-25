@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Product } from 'src/app/models/product';
+
 import { CartService } from 'src/app/services/cart.service';
 import { ProductService } from 'src/app/services/product.service';
 
@@ -22,9 +23,11 @@ export class ProductComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private toastrService: ToastrService,
     private cartService: CartService
+
   ) {}
 
   ngOnInit(): void {
+    console.log(localStorage.getItem('token'))
     this.activatedRoute.params.subscribe((params) => {
       if (params['categoryId']) {
         this.getPorductByCategory(params['categoryId']);

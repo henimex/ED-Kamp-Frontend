@@ -36,11 +36,14 @@ export class LoginComponent implements OnInit {
   login() {
     if (this.loginForm.valid) {
       let loginModel = Object.assign({}, this.loginForm.value);
-      this.authService.login(loginModel).subscribe(
-        (response) => {
-          console.log(response);
-        },
-        (responseError) => {
+
+      this.authService.login(loginModel).subscribe((response) => {
+        console.log(response);
+        if (response.success) {
+          this.toastrService.success('Giriş İşlemi Başarılı','Giriş Yapıldı');
+          localStorage.setItem("token", response.data.token)
+        }  
+        },(responseError) => {
           this.toastrService.error(responseError.error, 'İşlem Başarısız');
         }
       );
